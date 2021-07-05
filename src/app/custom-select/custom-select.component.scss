@@ -1,0 +1,99 @@
+details {
+  display: inline-block;
+  position: relative;
+  --padding: 0.5em;
+  --row-height: 2em;
+  --num-items: 0; /* Overriden in [style] attribute */
+  padding: var(--padding);
+
+  --transform-arrow-up: rotate(180deg);
+  --transform-arrow-down: translateY(0.45em);
+
+  & > summary {
+    display: block;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      margin-left: 0.5em;
+      border: 0.5em solid transparent;
+      border-top-color: currentColor;
+      width: 0;
+      height: 0;
+      display: inline-block;
+      position: relative;
+      transform-origin: 0.5em 0.35em;
+      transform: var(--transform-arrow-down);
+      transition: transform 0.2s ease-out;
+    }
+  }
+  &[open] > summary {
+    color: black;
+    &::after {
+      transform: var(--transform-arrow-up);
+    }
+
+    /* Invisible backdrop catches clicks outside of the control */
+    &::before {
+      content: "";
+      position: fixed;
+      left: -100vw;
+      top: -100vh;
+      width: 200vw;
+      height: 200vh;
+      background: transparent;
+    }
+  }
+
+  & > ul {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    width: calc(100% - var(--padding) * 2);
+    margin: 0;
+    margin-top: calc(var(--padding) / 2);
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    color: black;
+
+    & > li {
+      &:not(:first-of-type) {
+        border-top: 1px solid var(--element-border-color);
+      }
+      & > button {
+        width: 100%;
+        height: var(--row-height);
+        padding: 0.5em;
+        line-height: 1;
+        text-align: left;
+        &:hover {
+          background: var(--row-hover-color);
+        }
+      }
+    }
+  }
+  &[open] > ul {
+    animation: animateOpacity 0.2s ease-in forwards;
+  }
+  &.expand-up {
+    ul {
+      top: calc(
+        -1 * (var(--padding) + var(--num-items) * var(--row-height) + 1px *
+              (var(--num-items) - 1))
+      );
+    }
+    /* Uncomment to have the dropdown arrow switch to dropup when appropriate */
+    // & > summary::after { transform: var(--transform-arrow-up); }
+    // &[open] > summary::after { transform: var(--transform-arrow-down); }
+  }
+}
+
+@keyframes animateOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

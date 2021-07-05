@@ -1,0 +1,46 @@
+section {
+  display: flex;
+
+  & > div {
+    flex: 0 1 50%;
+  }
+}
+
+dl {
+  display: table;
+  & > div {
+    display: table-row;
+    & > * {
+      display: table-cell;
+      padding: 1em 0;
+    }
+    & > dt {
+      font-weight: bold;
+      padding-right: 1em;
+    }
+    & > dd {
+      opacity: 0.9;
+      min-width: 8em;
+    }
+  }
+}
+
+.chart {
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  flex-basis: 50%;
+  align-self: center;
+}
+
+@media (max-width: 900px) {
+  section {
+    flex-direction: column;
+  }
+  dl > div > * {
+    padding: 0.5em 0;
+  }
+  .chart {
+    align-self: auto;
+  }
+}

@@ -1,0 +1,82 @@
+:root {
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  --card-padding: 1.8rem;
+  --border-radius: 0.3rem;
+  --element-border-color: rgba(128, 128, 128, 0.5);
+  --row-hover-color: rgba(128, 128, 128, 0.1);
+  --row-selected-color: rgba(255, 255, 0, 0.1);
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
+  @media (max-width: 300px) {
+    font-size: 10px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fafafa;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  max-width: 1280px;
+}
+
+section {
+  margin: 3rem 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.ghost {
+  cursor: pointer;
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.card {
+  background: white;
+  padding: var(--card-padding);
+  border-radius: var(--border-radius);
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0.2rem 0.5rem;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+.error-box {
+  padding: 1rem;
+  border: 1px solid red;
+  background: rgb(255, 192, 192);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+}
